@@ -1,0 +1,165 @@
+d
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+
+<body>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    ; (function () {
+      const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+      function makeGreen() {
+        const p = document.querySelector('p');
+        p.style.color = '#BADA55';
+        p.style.fontSize = '50px';
+      }
+
+      let console = {
+        isDev: true,
+        log(...args) {
+          if (!this.isDev) return;
+          window.console.log("%c住手", "font-size: 60px; color: red;");
+          window.console.log(...args);
+        },
+        warn(...args) {
+          window.console.warn(...args);
+        },
+        error(...args) {
+          if (!this.isDev) return;
+          window.console.error(...args);
+        },
+        info(...args) {
+          if (!this.isDev) return;
+          window.console.info(...args);
+        },
+        assert(...args) {
+          if (!this.isDev) return;
+          window.console.assert(...args);
+        },
+        dir(...args) {
+          if (!this.isDev) return;
+          window.console.dir(...args);
+        },
+        table(...args) {
+          if (!this.isDev) return;
+          window.console.table(...args);
+        },
+        count(...args) {
+          if (!this.isDev) return;
+          window.console.count(...args);
+        },
+        time(...args) {
+          if (!this.isDev) return;
+          window.console.time(...args);
+        },
+        timeEnd(...args) {
+          if (!this.isDev) return;
+          window.console.timeEnd(...args);
+        },
+
+      };
+
+      let name = "alex";
+
+      // Regular
+      console.log(123, 456);
+      // Interpolated
+      console.log('My name is %s !!!', "alex");
+      console.log('I have %f dollars!!!', 3.45);
+      console.log('I have %d dollars!!!', 3.45);
+
+      console.log(`My name is ${name} !!!`);
+      // Styled
+
+      // warning!
+
+      console.warn("警告");
+      // Error :|
+      console.error("錯誤")
+      // Info
+      console.info("好像跟LOG一樣");
+      // Testing
+
+      console.assert(true, "訊息");
+      console.assert("", "訊息");
+      console.assert(0, "訊息");
+      console.assert(NaN, "訊息");
+      console.assert(null, "訊息");
+      console.assert(undefined, "訊息");
+      // clearing
+      // CTRL + L
+
+      // Viewing DOM Elements
+      let p = document.querySelector("p");
+
+      console.log(p);
+      console.log(dogs);
+
+      console.dir(p);
+      console.dir(dogs);
+
+      // Grouping together
+
+      // dogs.forEach(dog => {
+      //   console.groupCollapsed(`${dog.name}`);
+      //   console.log(`This is ${dog.name}`);
+      //   console.log(`${dog.name} is ${dog.age} years old`);
+      //   console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      //   console.groupEnd(`${dog.name}`);
+      // });
+      // counting
+
+      console.count('Wes');
+      console.count('Wes');
+      console.count('Steve');
+      console.count('Steve');
+      console.count('Wes');
+      console.count('Steve');
+      console.count('Wes');
+      console.count('Steve');
+      console.count('Steve');
+      console.count('Steve');
+      console.count('Steve');
+      console.count('Steve');
+
+      // timing
+
+      console.time('test out') //慢
+      let i1;
+      let j1;
+      for (i1 = 1; i1 < 10000000; i1++) {
+        j1 = i1;
+      }
+      console.timeEnd('test out')
+
+      console.time('test in') //快
+      for (let i2 = 1; i2 < 10000000; i2++) {
+        let j2 = i2;
+      }
+      console.timeEnd('test in')
+
+      console.time('test i') //快
+      let j3;
+      for (let i3 = 1; i3 < 10000000; i3++) {
+        j3 = i3;
+      }
+      console.timeEnd('test i')
+
+      console.time('test j') //慢
+      let i4;
+      for (i4 = 1; i4 < 10000000; i4++) {
+        let j4 = i4;
+      }
+      console.timeEnd('test j')
+    })();
+  </script>
+</body>
+
+</html>
